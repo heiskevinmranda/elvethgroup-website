@@ -1,0 +1,143 @@
+.pt-social-subscribe-box-clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.pt-social-subscribe-box {
+    z-index: 1099;
+}
+
+.pt-social-subscribe-box-feedback-message {
+    color: #fffeff;
+    font-size: small;
+    text-transform: none;
+    display: block;
+    text-align: center;
+}
+.pt-social-subscribe-box-feedback-message img{
+    display: block;
+    margin: 0 auto;
+}
+.pt-social-subscribe-box-header {
+    border-radius: 2px 0 0 0;
+    background-color: #111;
+    padding: 25px 40px 20px;
+    position: relative;
+    text-transform: uppercase;
+    color: #fff;
+}
+.pt-social-subscribe-box-header p {
+    font-size: 14px;
+}
+
+.pt-social-subscribe-box-header p span {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.pt-social-subscribe-box-submit-wrapper {
+    text-align: center;
+    margin-top: 10px;
+}
+.pt-social-subscribe-box-form {
+    max-width: 250px;
+}
+.pt-social-subscribe-box-input-field,
+.pt-social-subscribe-box-field-email {
+    padding: 7px 5px;
+}
+.pt-social-subscribe-box-email-row input{
+    display: block;
+    width: 100%;
+}
+.pt-social-subscribe-box-name-row input[type="text"] {
+    width: 48%;
+    float: left;
+}
+
+.pt-social-subscribe-box-name-row input:last-child {
+    float: right;
+}
+.pt-social-subscribe-box-name-row {
+    margin-top: 10px;
+}
+
+.pt-social-subscribe-box-submit-btn {
+    display: inline-block;
+    border-radius: 2px;
+    background-color: rgba(229,212,22,.6);
+    color: #000;
+    border:0 none;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 32px;
+
+    margin-top: 5px;
+    padding: 0 20px;
+    transition: background-color, .5s, easeOutQuad;
+}
+.pt-social-subscribe-box-submit-btn:hover {
+    background-color: rgba(229,212,22,1);
+    color: #000;
+}
+.pt-social-subscribe-box-footer {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 5px 15px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.pt-social-subscribe-box-follow-label {
+    display: block;
+    font-size: 10px;
+    margin: 0 auto 3px;
+    line-height: 10px;
+}
+
+.pt-social-subscribe-box-follow-label span {
+    font-weight: bold;
+}
+
+.pt-social-subscribe-box-social-icons {
+    max-width: 250px;
+}
+.pt-social-subscribe-box-social-icons a {
+    color: #fff;
+    display: inline-block;
+    border-radius: 2px;
+    margin: 0 5px 10px 0;
+    padding: 2px;
+    width: 90px;
+}
+
+.pt-social-subscribe-box-social-icons a span{
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.pt-social-subscribe-box-social-icons .pt-social-subscribe-box-fb-link {
+    background-color: #3b5998;
+}
+.pt-social-subscribe-box-social-icons .pt-social-subscribe-box-twitter-link {
+    background-color: #1da1f2;
+}
+.pt-social-subscribe-box-social-icons .pt-social-subscribe-box-linkedin-link {
+    background-color: #0079B0;
+}
+.pt-social-subscribe-box-social-icons .pt-social-subscribe-box-google-plus-link {
+    background-color:#EE4648;
+}
+
+.ui-slideouttab-handle, .ui-slideouttab-panel{
+    padding: 0;
+}
+.ui-slideouttab-panel{
+    border: none;
+}
+a.handle.ui-slideouttab-handle-rounded.ui-slideouttab-handle{
+    padding: 10px;
+}

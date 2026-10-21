@@ -1,0 +1,202 @@
+/* Admin CSS */
+
+.flow-read-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* Reading Progress Bar Settings Styles */
+.flow-read-settings-wrap {
+    max-width: 900px;
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.flow-read-settings-wrap .flow-read-heading {
+   
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.flow-read-settings-wrap .flow-read-heading h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+/* Setting Group Styles */
+.flow-read-settings-wrap .setting-group {
+    margin-bottom: 16px;
+    padding: 16px;
+    background: #f9f9f9;
+    border-radius: 6px; 
+    transition: all 0.3s ease;
+}
+
+.flow-read-settings-wrap .setting-group:hover {
+    background: #f5f5f5;
+    border-left-color: #005a87;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.flow-read-settings-wrap .setting-group:last-of-type {
+    margin-bottom: 30px;
+}
+
+/* Label Styles */
+ 
+/* Label Styles */
+.flow-read-settings-wrap .setting-group .setting-group-field > label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1d2327;
+    width: 100%;
+}
+
+/* Input and Select Styles */
+.flow-read-settings-wrap select,
+.flow-read-settings-wrap input[type="number"],
+.flow-read-settings-wrap input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #fff;
+}
+
+.flow-read-settings-wrap select:focus,
+.flow-read-settings-wrap input[type="number"]:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 0 1px #007cba;
+}
+
+.flow-read-settings-wrap select:hover,
+.flow-read-settings-wrap input[type="number"]:hover {
+    border-color: #a0a0a0;
+}
+
+/* Color Input Styles */
+.flow-read-settings-wrap input[type="color"] {
+    width: 80px;
+    height: 40px;
+    padding: 4px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.flow-read-settings-wrap input[type="color"]:hover {
+    border-color: #007cba;
+    transform: scale(1.05);
+}
+
+.flow-read-settings-wrap input[type="color"]:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 0 2px rgba(0, 124, 186, 0.2);
+}
+
+.flow-read-settings-wrap #flowread_secondary_color_field {
+    display: none;
+}
+
+.flow-read-settings-wrap.flowread-secondary-visible #flowread_secondary_color_field {
+    display: block;
+}
+
+/* Checkbox Group Styles */
+.flow-read-settings-wrap .checkbox-group {
+    margin-top: 10px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.flow-read-settings-wrap .checkbox-group label {
+    display: inline-flex;
+    align-items: center;
+    margin: 8px 0;
+    font-weight: normal;
+    font-size: 14px;
+    color: #2c3338;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.flow-read-settings-wrap .checkbox-group label:hover {
+    color: #007cba;
+}
+
+.flow-read-settings-wrap .checkbox-group input[type="checkbox"] {
+  
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #007cba;
+}
+
+/* Submit Button Area */
+.flow-read-settings-wrap .submit {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.flow-read-settings-wrap .submit .button-primary {
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.flow-read-settings-wrap .submit .button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 124, 186, 0.3);
+}
+
+/* Notice Styles */
+.flow-read-settings-wrap .notice {
+    margin: 20px 0;
+    padding: 12px 15px;
+    border-radius: 4px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 782px) {
+    .flow-read-settings-wrap {
+        padding: 15px 20px;
+    }
+    
+    .flow-read-settings-wrap .setting-group {
+        padding: 15px;
+    }
+    
+    .flow-read-settings-wrap select,
+    .flow-read-settings-wrap input[type="number"] {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .flow-read-settings-wrap h3 {
+        font-size: 18px;
+    }
+    
+    .flow-read-settings-wrap .setting-group {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+}

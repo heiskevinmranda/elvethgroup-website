@@ -1,0 +1,25 @@
+.git
+.github
+.gitignore
+.dockerignore
+.env
+.env.*
+!.env.example
+README.md
+backups
+*.sql
+*.sql.gz
+wp-config.php
+wp-content/upgrade
+wp-content/upgrade-temp-backup
+wp-content/ai1wm-backups/*.wpress
+
+# Media is synced separately to the uploads bind mount (not baked into the image)
+wp-content/uploads
+
+# WordPress core is provided by the base image - keep it out of the context
+wp-admin
+wp-includes
+/*.php
+/license.txt
+/readme.html

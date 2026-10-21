@@ -1,0 +1,159 @@
+name: Deploy to Elveth ERP VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      skip_uploads:
+        description: "Skip uploading wp-content/uploads"
+        type: boolean
+        default: false
+
+concurrency:
+  group: elvethgroup-production
+  cancel-in-progress: false
+
+env:
+  APP_DIR: /opt/elvethgroup
+  IMAGE_NAME: ghcr.io/${{ github.repository }}
+
+jobs:
+  lint:
+    name: PHP lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint changed PHP files
+        run: |
+          set -e
+          files=$(git diff --name-only --diff-filter=ACMR "${{ github.event.before }}" "${{ github.sha }}" 2>/dev/null | grep -E '\.php$' || true)
+          if [ -z "$files" ]; then
+            echo "No PHP files changed - nothing to lint"
+            exit 0
+          fi
+          echo "$files" | xargs -n1 -I{} php -l {} | grep -v "No syntax errors" || true
+          echo "$files" | xargs -n1 -I{} php -l {} >/dev/null
+
+  deploy:
+    name: Build, push and deploy
+    needs: lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.IMAGE_NAME }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+          ssh-host: ${{ secrets.VPS_HOST }}
+
+      - name: Upload stack configuration
+        uses: appleboy/rsync-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: |
+            docker-compose.yml
+            docker/
+            scripts/
+            deploy/
+          target: ${{ env.APP_DIR }}
+          strip_components: 0
+          rsync_args: "-avz --delete --exclude 'backups' --exclude '.env'"
+
+      - name: Sync media (wp-content/uploads)
+        if: ${{ !inputs.skip_uploads }}
+        uses: appleboy/rsync-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: wp-content/uploads/
+          target: ${{ env.APP_DIR }}/uploads/
+          rsync_args: "-az --no-delete --exclude '*.tmp'"
+
+      - name: Deploy stack
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: APP_DIR
+          script: |
+            set -e
+            mkdir -p ${{ env.APP_DIR }}/backups
+            cat > ${{ env.APP_DIR }}/.env <<'ENVFILE'
+            ${{ secrets.SERVER_ENV }}
+            ENVFILE
+            chmod 600 ${{ env.APP_DIR }}/.env
+            cd ${{ env.APP_DIR }}
+            chmod +x scripts/*.sh
+            bash scripts/deploy.sh
+
+      - name: Install / refresh nginx virtual host
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: APP_DIR
+          script: |
+            set -e
+            cd ${{ env.APP_DIR }}
+            if command -v nginx >/dev/null 2>&1; then
+              bash scripts/install-nginx.sh
+            else
+              echo "nginx not installed - skipping virtual host setup"
+            fi
+
+      - name: Verify site
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: APP_DIR
+          script: |
+            set -e
+            curl -fsS -o /dev/null -w "local http status: %{http_code}\n" http://127.0.0.1:8080/
+            docker compose -f ${{ env.APP_DIR }}/docker-compose.yml ps
+
+      - name: Smoke test public URL
+        run: |
+          set -e
+          url="${{ vars.SITE_URL }}"
+          if [ -z "$url" ]; then
+            url="https://elvethgroup.co.tz"
+          fi
+          echo "Checking $url"
+          curl -sS -o /dev/null -w "status: %{http_code} final: %{url_effective}\n" -L --max-time 45 "$url" || true

@@ -1,0 +1,1140 @@
+
+.after_login_btn_wrapper .after_login_btn_main {
+	position: relative;
+	display: inline;
+	padding: 10px 15px;
+	border-radius: 5px;
+	display: inline-block;
+	line-height: 1;
+	background-color: #818a91;
+	color: #fff;
+	fill: #fff;
+	text-align: center;
+	-webkit-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	text-decoration: none;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	cursor: pointer
+}
+
+.tmpcoder-form-label {
+	margin-bottom: 7px;
+	font-size: 16px;
+	line-height: 1;
+	font-weight: 400
+}
+
+.tmpcoder-wp-lrcf .tmpcoder-button,
+.tmpcoder-wp-lrcf .tmpcoder-button-fp {
+	display: inline-block;
+}
+
+.after_login_btn_wrapper .tmpcoder-user-login ul {
+	margin: 0;
+	margin-bottom: 5px;
+	padding: 0
+}
+
+.after_login_btn_wrapper .tmpcoder-user-login ul li {
+	list-style: none;
+	text-align: center
+}
+
+.after_login_btn_wrapper .tmpcoder-user-login {
+	display: none;
+	position: absolute;
+	-webkit-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+	border: 1px solid #a59696;
+	z-index: 11;
+	background: #fff;
+	width: max-content;
+	border-radius: 5px;
+	padding: 10px
+}
+
+.after_login_btn_wrapper:hover .tmpcoder-user-login {
+	display: block
+}
+
+.tmpcoder-wp-lrcf {
+	position: relative;
+	display: block;
+	width: 100%;
+	z-index: inherit
+}
+
+.tmpcoder-user-login,
+.tmpcoder-user-register {
+	position: relative
+}
+
+.tmpcoder-wp-lrcf .tmpcoder-forg-pass-form {
+	position: relative
+}
+
+.tmpcoder-wp-lrcf .tmpcoder-lr-comm-wrap {
+	position: relative
+}
+
+.elementor-form-fields-wrapper.tmpcoder-modal-body {
+	position: relative;
+	display: block;
+	width: 100%
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-dropdown .lr-extra-div,
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-modal {
+	overflow: hidden
+}
+
+.elementor-widget-tmpcoder-wp-login-register input[type="text"],
+.elementor-widget-tmpcoder-wp-login-register input[type="email"],
+.elementor-widget-tmpcoder-wp-login-register input[type="password"],
+.elementor-widget-tmpcoder-wp-login-register button,
+.elementor-widget-tmpcoder-wp-login-register [type="submit"] {
+	width: 100% !important
+}
+
+.elementor-widget-tmpcoder-wp-login-register button,
+.elementor-widget-tmpcoder-wp-login-register [type="submit"] {
+	margin-top: 10px
+}
+
+.after_login_btn_wrapper {
+	position: relative;
+	display: inline
+}
+
+.tmpcoder-user-register-skin-dropdown .elementor-form-fields-wrapper,
+.tmpcoder-user-login-skin-dropdown .elementor-form-fields-wrapper,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-hover .tmpcoder-lr-cl-100per {
+	padding-top: 10px !important
+}
+
+.tmpcoder-login-reg-form {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-dropdown .lr-extra-div,
+.tmpcoder-user-register.tmpcoder-user-register-skin-dropdown .lr-extra-div {
+	display: none;
+	position: absolute;
+	padding: 10px 15px;
+	background: #dbdfe2;
+	margin-top: 5px;
+	border-radius: 4px;
+	min-width: 300px;
+	z-index: 11
+}
+
+.tmpcoder-user-register-skin-dropdown .elementor-form-fields-wrapper,
+.tmpcoder-user-login-skin-dropdown .elementor-form-fields-wrapper {
+	margin-top: 0
+}
+
+.tmpcoder-user-login .lr-extra-div,
+.tmpcoder-user-register .lr-extra-div {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto
+}
+
+.tmpcoder-user-login .tmpcoder-button-fp {
+	margin-top: 10px
+}
+
+.tmpcoder-user-login h2:before,
+.tmpcoder-user-register h2:before,
+.tmpcoder-lr-cl-100per h2:before {
+	display: none
+}
+
+.tmpcoder-user-login h2,
+.tmpcoder-user-register h2,
+.tmpcoder-lr-cl-100per h2:before {
+	margin: 0;
+	margin-bottom: 5px
+}
+
+.tmpcoder-user-login .tmpcoder-popup-title,
+.tmpcoder-user-register .tmpcoder-popup-title,
+.tmpcoder-lr-cl-100per .tmpcoder-popup-title {
+	position: relative;
+	display: inline;
+	font-size: 28px
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-modal .tmpcoder-lr-model-btn,
+.tmpcoder-user-login.tmpcoder-user-login-skin-dropdown .tmpcoder-button-dropdown,
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-ulsp-btn,
+.tmpcoder-user-register.tmpcoder-user-register-skin-modal .tmpcoder-lr-model-btn,
+.tmpcoder-user-register.tmpcoder-user-register-skin-dropdown .tmpcoder-button-dropdown,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-ursp-btn,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-ursp-btn,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-hover .tmpcoder-button-dropdown,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click .tmpcoder-lr-model-btn {
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid #5729d9;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	padding: 10px 16px;
+	font-size: 18px;
+	line-height: 1.33;
+	border-radius: 6px;
+	color: #fff;
+	background-color: #5729d9;
+}
+
+/* .tmpcoder-user-login.tmpcoder-user-login-skin-modal .tmpcoder-lr-model-btn:hover,
+.tmpcoder-user-login.tmpcoder-user-login-skin-dropdown .tmpcoder-button-dropdown:hover,
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-ulsp-btn:hover,
+.tmpcoder-user-register.tmpcoder-user-register-skin-modal .tmpcoder-lr-model-btn:hover,
+.tmpcoder-user-register.tmpcoder-user-register-skin-dropdown .tmpcoder-button-dropdown:hover,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-ursp-btn:hover,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-ursp-btn:hover,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-hover .tmpcoder-button-dropdown:hover,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click .tmpcoder-lr-model-btn:hover {
+	color: #fff;
+	background-color: #3276b1;
+	border-color: #285e8e
+} */
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-dropdown {
+	position: relative;
+	display: inline-block;
+	width: auto
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-dropdown a {
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 5px
+}
+
+.tmpcoder-field-group.tmpcoder-user-login-password {
+	position: relative;
+	display: block;
+	width: 100%
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-dropdown .tmpcoder-lost-password,
+.tmpcoder-user-login.tmpcoder-user-login-skin-dropdown .tmpcoder-register {
+	width: auto;
+	display: inline-block
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-modal {
+	position: relative;
+	display: inline-block
+}
+
+.tmpcoder-user-login-modal .lr-close-custom_img {
+	position: absolute;
+	display: flex;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-top: 0;
+	cursor: pointer;
+	right: 5px;
+	z-index: 111
+}
+
+.tmpcoder-modal-title:before {
+	background: transparent
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-modal .tmpcoder-user-login-modal {
+	position: relative;
+	display: block;
+	width: auto
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-modal .tmpcoder-modal-dialog,
+.tmpcoder-user-register.tmpcoder-user-register-skin-modal .tmpcoder-modal-dialog,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click .tmpcoder-lr-cl-100per {
+	position: absolute;
+	width: auto;
+	display: none;
+	padding: 10px 15px;
+	border: 2px solid #000;
+	border-radius: 5px;
+	margin-top: 10px;
+	background: #fff;
+	z-index: 11;
+	min-width: 350px
+}
+
+.tmpcoder-modal-wrapper.open {
+	z-index: 11
+}
+
+.tmpcoder-user-login .tmpcoder-lost-password,
+.tmpcoder-tab-content-inner.tab-login .tmpcoder-lost-password,
+.tmpcoder-user-register .tmpcoder-lost-password,
+.tmpcoder-user-register-password .tmpcoder-lost-password {
+	cursor: pointer;
+	font-size: 16px;
+	text-transform: capitalize;
+	line-height: 1;
+	color: #313131;
+	font-weight: 500
+}
+
+.tmpcoder-user-login .tmpcoder-form-stacked-fp,
+.tmpcoder-lr-cl-100per .tmpcoder-form-stacked-fp,
+.tmpcoder-user-register .tmpcoder-form-stacked-fp {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	padding: 10px 15px;
+	background: #dbdfe2;
+	border-radius: 4px;
+	z-index: 11
+}
+
+.tmpcoder-user-login .tmpcoder-form-stacked-fp {
+	margin-top: 0;
+	height: 100%
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-default .tmpcoder-form-stacked-fp,
+.tmpcoder-user-register.tmpcoder-user-register-skin-default .tmpcoder-form-stacked-fp,
+.tmpcoder-user-login.tmpcoder-user-login-skin-modal .tmpcoder-form-stacked-fp,
+.tmpcoder-user-register.tmpcoder-user-register-skin-modal .tmpcoder-form-stacked-fp,
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-form-stacked-fp,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-form-stacked-fp,
+.tmpcoder-lr-cl-100per .tmpcoder-form-stacked-fp {
+	height: 100%;
+	background: #fff
+}
+
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-hover .tmpcoder-lr-cl-100per .tmpcoder-form-stacked-fp {
+	min-width: auto;
+	background: #dbdfe2;
+	padding: 0
+}
+
+.tmpcoder-user-login .tmpcoder-form-stacked-fp .tmpcoder-lpu-back,
+.tmpcoder-lr-cl-100per .tmpcoder-form-stacked-fp .tmpcoder-lpu-back,
+.tmpcoder-user-register .tmpcoder-form-stacked-fp .tmpcoder-lpu-back {
+	cursor: pointer;
+	position: relative;
+	display: inline-block
+}
+
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-hover .tmpcoder-lr-cl-100per {
+	display: none;
+	position: absolute;
+	padding: 10px 15px;
+	background: #dbdfe2;
+	margin-top: 5px;
+	border-radius: 4px;
+	min-width: 300px;
+	z-index: 11
+}
+
+.tmpcoder-user-register.tmpcoder-user-register-skin-dropdown,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-hover {
+	position: relative;
+	display: inline-block;
+	width: auto
+}
+
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click {
+	width: auto;
+	height: 100%
+}
+
+.tmpcoder-user-register.tmpcoder-user-register-skin-dropdown a,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-hover .tmpcoder-button-dropdown a {
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 5px
+}
+
+.tmpcoder-user-register.tmpcoder-user-register-skin-dropdown .tmpcoder-lost-password,
+.tmpcoder-user-register.tmpcoder-user-register-skin-dropdown .tmpcoder-login {
+	width: auto;
+	display: inline
+}
+
+.tmpcoder-user-register.tmpcoder-user-register-skin-modal,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click {
+	position: relative;
+	display: inline-block
+}
+
+.tmpcoder-user-register-modal .lr-close-custom_img,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click .lr-close-custom_img,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .lr-close-custom_img {
+	position: absolute;
+	display: flex;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-top: 0;
+	cursor: pointer;
+	right: 5px;
+	z-index: 111
+}
+
+.tmpcoder-modal-title:before {
+	background: transparent
+}
+
+.tmpcoder-user-register.tmpcoder-user-register-skin-modal .tmpcoder-user-register-modal {
+	position: relative;
+	display: block;
+	width: auto;
+	z-index: 11
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-ulsp-page-wrapper,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-ursp-page-wrapper,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-ursp-page-wrapper {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .blur,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .blur,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .blur {
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px)
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-modal-wrapper,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-modal-wrapper,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-modal-wrapper {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(245, 245, 241, .75);
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-modal-wrapper.open,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-modal-wrapper.open,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-modal-wrapper.open {
+	opacity: 1;
+	visibility: visible
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-modal,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-modal,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-modal {
+	max-width: 350px;
+	height: auto;
+	display: block;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	opacity: 0;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	padding: 10px 15px
+}
+
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-modal,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click .tmpcoder-lr-cl-100per {
+	overflow-y: auto
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-modal-wrapper.open .tmpcoder-modal,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-modal-wrapper.open .tmpcoder-modal,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-modal-wrapper.open .tmpcoder-modal {
+	opacity: 1
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .head,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .head,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .head {
+	width: 100%;
+	height: 32px;
+	padding: 1.5em 10px;
+	overflow: hidden;
+	background: #a1a1a1
+}
+
+.tmpcoder-user-login.tmpcoder-user-login-skin-popup .tmpcoder-ulsp-btn-close,
+.tmpcoder-user-register.tmpcoder-user-register-skin-popup .tmpcoder-ursp-btn-close,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-ursp-btn-close {
+	width: 30px;
+	height: 30px;
+	display: block;
+	position: absolute;
+	right: 0;
+	margin-right: 0;
+	cursor: pointer;
+	z-index: 1
+}
+
+.tmpcoder-lr-cl-100per {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-height: max-content;
+	overflow: hidden
+}
+
+.tmpcoder-lr-cl-100per .cl-50per {
+	position: relative;
+	float: left;
+	width: 50%;
+	word-break: break-word;
+	padding: 1%
+}
+
+.tmpcoder-lr-cl-100per .cl-100per {
+	width: 100%
+}
+
+.tmpcoder-l-r-main-wrapper {
+	position: relative;
+	display: block;
+	width: 100%
+}
+
+.tmpcoder-forgot-password-label {
+	position: relative;
+	display: block;
+	margin-top: 10px
+}
+
+.tmpcoder-l-r-main-wrapper .tmpcoder-l-r-tab-group {
+	position: relative;
+	display: block;
+	align-items: center;
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	padding: 0
+}
+
+.tmpcoder-l-r-main-wrapper .tmpcoder-l-r-tab {
+	position: relative;
+	display: inline-flex !important;
+	list-style: none;
+	padding: 7px 10px;
+	background: #e4e4e4;
+	border-radius: 5px;
+	max-width: 130px;
+	min-width: 130px;
+	text-align: right;
+	justify-content: center;
+	cursor: pointer
+}
+
+.tmpcoder-l-r-main-wrapper .tmpcoder-l-r-tab.active {
+	background: antiquewhite
+}
+
+.tmpcoder-l-r-main-wrapper .tmpcoder-l-r-tab-content {
+	position: relative;
+	display: block;
+	width: 100%
+}
+
+.tmpcoder-l-r-main-wrapper .tmpcoder-l-r-tab-content .tmpcoder-tab-content-inner {
+	display: none;
+	position: relative;
+	width: 100%
+}
+
+.tmpcoder-l-r-main-wrapper .tmpcoder-l-r-tab-content .tmpcoder-tab-content-inner.active {
+	display: block
+}
+
+.tmpcoder-notification {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 0;
+	height: 100%;
+	background: rgba(0, 0, 0, .4);
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-ms-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear
+}
+
+.tmpcoder-notification.active {
+	opacity: 1;
+	visibility: visible
+}
+
+.tmpcoder-notification.active .tmpcoder-lr-response {
+	position: relative;
+	display: block;
+	vertical-align: middle;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 5px;
+	text-align: center;
+	color: #fff
+}
+
+.tmpcoder-notification.active .tmpcoder-lr-response .fa {
+	font-weight: 600
+}
+
+.tmpcoder-notification.active .tmpcoder-lr-response .fa {
+	margin-right: 10px
+}
+
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup {
+	position: relative;
+	display: block;
+	width: 100%
+}
+
+.tmpcoder-wp-lrcf .elementor-button-content-wrapper {
+	position: relative;
+	display: inline-block
+}
+
+form.tmpcoder-form-stacked,
+.tmpcoder-form-stacked-fp {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%
+}
+
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click .tmpcoder-lr-cl-100per .tmpcoder-form-stacked-fp,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .tmpcoder-lr-cl-100per .tmpcoder-form-stacked-fp {
+	padding: 0
+}
+
+.elementor-widget-tmpcoder-wp-login-register .login-before-text {
+	position: relative;
+	display: inline
+}
+
+.tmpcoder-field-group:not(.tmpcoder-user-login-password):not(.tmpcoder-remember-me) {
+	margin: 15px 0
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:checked,
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:not(:checked) {
+	position: absolute;
+	left: -9999px
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:checked+label,
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:not(:checked)+label {
+	position: relative;
+	padding-left: 28px;
+	cursor: pointer;
+	line-height: 20px;
+	display: inline-block;
+	color: #666
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:checked+label:before,
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:not(:checked)+label:before {
+	content: '';
+	position: absolute;
+	left: -22px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 18px;
+	height: 18px;
+	border: 1px solid #ddd;
+	background: #fff
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:checked+label:after,
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:not(:checked)+label:after {
+	content: '';
+	width: 8px;
+	height: 8px;
+	background: #808a91;
+	position: absolute;
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	left: -17px;
+	top: 6px;
+	transform: translateY(-50%)
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:not(:checked)+label:after {
+	opacity: 0;
+	-webkit-transform: scale(0);
+	transform: scale(0)
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me [type="checkbox"]:checked+label:after {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1)
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me .tmpcoder-form-label {
+	position: relative;
+	display: inline-block;
+	cursor: pointer
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me .tmpcoder-form-label .remember-me-label {
+	margin-left: 25px
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me .tmpcoder-checkbox {
+	display: none
+}
+
+.tmpcoder-field-group.tmpcoder-remember-me .remember-me-label {
+	position: relative;
+	display: inline-block;
+	cursor: pointer
+}
+
+.tmpcoder-wp-lrcf .tmpcoder-user-login .tmpcoder-user-avatar img {
+	max-width: 100px;
+	border-radius: 50%
+}
+
+.tmpcoder-user-register-modal .lr-close-custom_img,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-click .lr-close-custom_img,
+.tmpcoder-lr-combo.tmpcoder-lr-comnbo-skin-popup .lr-close-custom_img {
+	outline: none
+}
+
+.tmpcoder-wp-lrcf .elementor-button-content-wrapper i,
+.tmpcoder-wp-lrcf .tmpcoder-lr-comm-wrap .tmpcoder-ursp-btn i {
+	margin-right: 10px;
+	-webkit-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s
+}
+
+.after_login_btn_wrapper .after_login_btn_main span {
+	position: relative;
+	display: flex;
+	align-items: center
+}
+
+.after_login_btn_wrapper .after_login_btn_main span .avatar {
+	margin-right: 15px
+}
+
+.after_login_btn_wrapper .tmpcoder-user-login .tmpcoder-list .tmpcoder-user-logged-out .tmpcoder-button,
+.after_login_btn_wrapper .tmpcoder-user-login ul .tmpcoder-user-name a,
+.after_login_btn_wrapper .tmpcoder-user-login ul .after_login_panel_link a {
+	color: #000;
+	font-size: 18px;
+	background: transparent;
+	padding: 0
+}
+
+.after_login_btn_wrapper .tmpcoder-user-login .tmpcoder-list .tmpcoder-user-logged-out,
+.after_login_btn_wrapper .tmpcoder-user-login ul .tmpcoder-user-name,
+.after_login_btn_wrapper .tmpcoder-user-login ul .after_login_panel_link {
+	line-height: 1.5
+}
+
+.after_login_btn_wrapper .tmpcoder-user-login.tmpcoder-lrfp-lyot-con-left,
+.tmpcoder-wp-lrcf .lr-extra-div.tmpcoder-lrfp-lyot-con-left,
+.tmpcoder-wp-lrcf .tmpcoder-lr-cl-100per.tmpcoder-lrfp-lyot-con-left,
+.tmpcoder-wp-lrcf .tmpcoder-modal-dialog.tmpcoder-lrfp-lyot-con-left {
+	left: 0;
+	right: auto
+}
+
+.after_login_btn_wrapper .tmpcoder-user-login.tmpcoder-lrfp-lyot-con-right,
+.tmpcoder-wp-lrcf .lr-extra-div.tmpcoder-lrfp-lyot-con-right,
+.tmpcoder-wp-lrcf .tmpcoder-lr-cl-100per.tmpcoder-lrfp-lyot-con-right,
+.tmpcoder-wp-lrcf .tmpcoder-modal-dialog.tmpcoder-lrfp-lyot-con-right {
+	left: auto;
+	right: 0
+}
+
+.after_login_btn_wrapper .tmpcoder-user-login.tmpcoder-lrfp-lyot-con-center,
+.tmpcoder-wp-lrcf .lr-extra-div.tmpcoder-lrfp-lyot-con-center,
+.tmpcoder-wp-lrcf .tmpcoder-lr-cl-100per.tmpcoder-lrfp-lyot-con-center,
+.tmpcoder-wp-lrcf .tmpcoder-modal-dialog.tmpcoder-lrfp-lyot-con-center {
+	left: auto;
+	right: auto;
+	margin: 0 auto
+}
+
+.after_login_btn_wrapper .after_login_btn_main span .avatar {
+	width: 40px
+}
+
+.tmpcoder-plus-re-captcha {
+	position: relative;
+	display: block;
+	width: 100%
+}
+
+@media (max-width:767px) {
+	.tmpcoder-lr-cl-100per .cl-50per {
+		width: 100%
+	}
+}
+
+.tmpcoder-wp-lrcf .tmpcoder-forg-pass-form .tmpcoder-input {
+	margin: 10px 0 10px 0
+}
+
+.tmpcoder-wp-lrcf .tmpcoder-lr-f-tac .tmpcoder-input {
+	display: none
+}
+
+.tmpcoder-field-group.tmpcoder-lr-f-tac label {
+	margin: 0
+}
+
+.tmpcoder-field-group.tmpcoder-lr-f-tac .tmpcoder-form-controls {
+	align-items: center
+}
+
+.tmpcoder-field-group.tmpcoder-lr-f-tac .tmpcoder-form-label {
+	margin-left: 10px
+}
+
+.tmpcoder-wp-lrcf .user_tac_checkbox {
+	display: block;
+	width: 15px;
+	height: 16px;
+	background: #d0d0d0;
+	border: 1px solid #000
+}
+
+.tmpcoder-wp-lrcf .user_tac_checkbox:after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 3px;
+	background: #3498db;
+	-webkit-transform: translate(4px, 11px) rotate(-45deg);
+	transform: translate(7px, 11px) rotate(-45deg);
+	-webkit-transform-origin: left;
+	transform-origin: left;
+	transition: all 150ms;
+	transition-delay: 0ms
+}
+
+.tmpcoder-wp-lrcf .user_tac_checkbox:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 3px;
+	background: #3498db;
+	-webkit-transform: translate(1px, 6px) rotate(45deg);
+	transform: translate(1px, 6px) rotate(45deg);
+	-webkit-transform-origin: left;
+	transform-origin: left;
+	transition: all 150ms;
+	transition-delay: 150ms
+}
+
+.tmpcoder-wp-lrcf input[type="checkbox"]:checked~.user_tac_checkbox:before {
+	width: 7px;
+	transition-delay: 0ms
+}
+
+.tmpcoder-wp-lrcf input[type="checkbox"]:checked~.user_tac_checkbox:after {
+	width: 15px;
+	transition-delay: 150ms
+}
+
+.tmpcoder-wp-lrcf .tmpcoder-lr-f-tac .user_tac_checkbox {
+	cursor: pointer
+}
+
+.tmpcoder-field-group.tmpcoder-lr-f-tac.tmpcoder-lrfp-ff-center {
+	justify-content: center;
+	display: flex
+}
+
+.tmpcoder-field-group.tmpcoder-lr-f-tac.tmpcoder-lrfp-ff-left {
+	justify-content: flex-start;
+	display: flex
+}
+
+.tmpcoder-field-group.tmpcoder-lr-f-tac.tmpcoder-lrfp-ff-right {
+	justify-content: flex-end;
+	display: flex
+}
+
+.tmpcoder-user-register .password-strength-wrapper {
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+	width: 0;
+	transition: all 0.3s linear;
+	position: relative
+}
+
+.tmpcoder-user-register .password-strength-wrapper.show {
+	opacity: 1;
+	width: 100%;
+	height: 100%;
+	visibility: visible;
+	display: flex
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-label.show {
+	position: relative;
+	display: inline-flex;
+	width: max-content;
+	margin-bottom: 7px;
+	float: right
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-field.show #password-strength {
+	position: relative;
+	font-size: 0;
+	padding: 2px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	line-height: 1;
+	width: 0;
+	-webkit-transition: width 0.3s;
+	transition: width 0.3s
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-field.show #password-strength.short {
+	width: 25%;
+	background: #a03
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-field.show #password-strength.bad {
+	width: 50%;
+	background: #fc3
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-field.show #password-strength.good {
+	width: 75%;
+	background: #69c
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-field.show #password-strength.strong {
+	width: 100%;
+	background: green
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-field.show {
+	margin-top: 5px;
+	border: 1px solid #0000004d;
+	border-radius: 3px
+}
+
+.tmpcoder-user-register .tmpcoder-form-rf-meter.tmpcoder-form-controls {
+	position: relative;
+	display: block
+}
+
+.tmpcoder-user-register .tmpcoder-form-rf-meter.tmpcoder-form-controls .tmpcoder-input+.password-strength-wrapper.style-2.inline-filed.show {
+	position: absolute;
+	top: 0;
+	padding: .5rem 1rem;
+	width: max-content;
+	right: 0
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-label.show .short,
+.tmpcoder-user-register .password-strength-wrapper.style-2.inline-filed.show .short,
+.tmpcoder-user-register .password-strength-wrapper.style-1 .short {
+	color: #a03
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-label.show .bad,
+.tmpcoder-user-register .password-strength-wrapper.style-2.inline-filed.show .bad,
+.tmpcoder-user-register .password-strength-wrapper.style-1 .bad {
+	color: #fc3
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-label.show .good,
+.tmpcoder-user-register .password-strength-wrapper.style-2.inline-filed.show .good,
+.tmpcoder-user-register .password-strength-wrapper.style-1 .good {
+	color: #69c
+}
+
+.tmpcoder-user-register .password-strength-wrapper.style-2.after-label.show .strong,
+.tmpcoder-user-register .password-strength-wrapper.style-2.inline-filed.show .strong,
+.tmpcoder-user-register .password-strength-wrapper.style-1 .strong {
+	color: green
+}
+
+.tmpcoder-user-register .tmpcoder-form-stacked input:not(.tmpcoder-reg-f-load):invalid {
+	background-repeat: no-repeat;
+	background-position: right calc(0.375em + 0.1875rem) center;
+	background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+	background-image: url(../../plugins/tmpcoder_elementor_addon/assets/images/login-vali-error.png);
+	cursor: pointer
+}
+
+.tmpcoder-user-register .tmpcoder-form-stacked .tmpcoder-reg-form-error-field {
+	opacity: 0;
+	position: absolute;
+	right: 0;
+	margin-top: 50px;
+	background: #f84545;
+	border-radius: 3px;
+	padding: 0 10px;
+	transition: all 0.3s linear;
+	font-size: 12px;
+	color: #fff
+}
+
+.tmpcoder-user-register .tmpcoder-form-stacked input:not(.tmpcoder-reg-f-load):invalid:hover+.tmpcoder-reg-form-error-field {
+	opacity: 1
+}
+
+.tmpcoder-user-register .tmpcoder-form-stacked .tmpcoder-reg-form-error-field:before {
+	content: "";
+	position: absolute;
+	top: -13px;
+	right: 19px;
+	margin-left: 0;
+	border-width: 7px;
+	border-style: solid;
+	border-color: #f84545 transparent transparent transparent;
+	transform: rotate(180deg)
+}
+
+.tmpcoder-form-controls .tmpcoder-honey-input {
+	display: none !important
+}
+
+.tmpcoder-lr-f-user-pass .tmpcoder-password-field-show {
+	position: absolute;
+	z-index: 11;
+	right: 5px;
+	margin-top: 10px;
+	transform: scale(.8);
+	transition: all 0.3s linear
+}
+
+.tmpcoder-lr-f-user-pass .tmpcoder-password-field-show:hover {
+	transform: scale(1)
+}
+
+.tmpcoder-user-register .tmpcoder-pass-indicator {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0
+}
+
+.tmpcoder-user-register .tmpcoder-pass-indicator li {
+	list-style: none;
+	user-select: none
+}
+
+.tmpcoder-user-register .tmpcoder-pass-indicator li span i {
+	margin-right: 10px;
+	font-size: inherit
+}
+
+.tmpcoder-user-register .tmpcoder-pass-success-ind {
+	color: green
+}
+
+.tmpcoder-user-register .tmpcoder-pass-indicator.pshf {
+	display: none
+}
+
+.tmpcoder-lr-f-user-pass .tmpcoder-password-field-showh {
+	position: absolute;
+	z-index: 11;
+	right: 10px;
+	margin-top: -25px;
+	transform: scale(.8);
+	transition: all 0.3s linear;
+	color: red
+}
+
+.tmpcoder-lr-f-user-pass .tmpcoder-password-field-showh.tmpcoder-done {
+	color: green
+}
+
+.tmpcoder-lr-f-user-pass .tmpcoder-password-field-showh:hover {
+	transform: scale(1)
+}
+
+.tmpcoder-user-register .tmpcoder-pass-indicator.pshc {
+	display: none
+}
+
+.tmpcoder-user-register .tmpcoder-pass-indicator.pshc.tmpcoder-done {
+	display: none !important
+}
+
+.tmpcoder-user-register .tmpcoder-pass-indicator.phinline li {
+	display: inline-block;
+	padding: 8px;
+	background: #0000001c;
+	margin-right: 5px;
+	border-radius: 50px;
+	border: 1px solid #0000001c
+}
+
+.elementor-widget-tmpcoder-wp-login-register .tmpcoder-form-stacked ul.tmpcoder-pass-indicator li {
+	list-style: none
+}
+
+.elementor-widget-tmpcoder-wp-login-register .tmpcoder-form-stacked ul.tmpcoder-pass-indicator {
+	padding: 0
+}
+
+.elementor-widget-tmpcoder-wp-login-register .tmpcoder-form-stacked ul.tmpcoder-pass-indicator li>span {
+	margin-right: 5px
+}

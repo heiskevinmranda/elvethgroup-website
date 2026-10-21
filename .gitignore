@@ -1,0 +1,37 @@
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+wp-config.php
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.log
+
+# Local tooling
+.vscode/
+.idea/
+node_modules/
+
+# WordPress core is provided by the Docker image - keep it out of git
+wp-admin
+wp-includes
+
+# Media is synced separately to the uploads bind mount (not baked into the image or git)
+wp-content/uploads
+
+# AI1WM / migration leftovers
+wp-content/ai1wm-backups/*.wpress
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+
+# Backups created on the server
+backups/
+*.sql
+*.sql.gz
+
+# License / readme (optional)
+license.txt
+readme.html

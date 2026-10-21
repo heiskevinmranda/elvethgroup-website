@@ -1,0 +1,162 @@
+=== FlowRead – Smart Reading Experience for Websites ===
+Contributors: sydurrahman
+Tags: reading progress bar, article read time, reading experience, user engagement, reading time estimate
+Requires at least: 5.0
+Tested up to: 6.9
+Requires PHP: 7.4
+Stable tag: 1.0.4
+License: GPL-2.0+
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+
+Adds a reading progress bar and estimated article read time to improve engagement and reading experience.
+
+== Description ==
+
+**FlowRead** is a powerful WordPress plugin designed to enhance your website's reading experience. It provides essential reading tools that help visitors understand content depth and manage their time more effectively.
+
+### Key Features
+
+✨ **Reading Progress Bar**
+-  Visual scroll-progress indicator with Classic/Gradient styles, adjustable height, custom colors, and selective post type display.
+
+⏱️ **Article Read Time**
+- Auto-calculates estimated reading time with configurable WPM, custom styling, and multiple display formats.
+
+🔢 **Dynamic Word Counter**
+- Real-time word counting for admin editor and frontend fields, with min/max limits, progress bar, floating or inline display, and full UI customisation.
+
+### Why FlowRead?
+
+1. **Boost User Engagement** – Reading progress bars keep visitors engaged by showing content depth
+2. **Improve Time Management** – Article read time helps visitors plan their reading sessions
+3. **Reduce Bounce Rates** – Set proper expectations with reading time estimates
+4. **Fully Customizable** – Complete control over colors, styles, and display options
+5. **Performance Optimized** – Lightweight and fast-loading
+6. **SEO Friendly** – Increases time-on-site metrics that benefit your rankings
+ 
+### Customization Options
+
+- **Colors**: Customize background color, primary color, and gradient colors
+- **Size**: Adjust progress bar height from 1 to 100 pixels
+- **Position**: Choose where to display the progress bar (top, bottom, or fixed top)
+- **Post Types**: Select which post types should show the features
+- **Speed**: Customize words per minute for accurate read time
+
+### Perfect For
+
+- Blog websites needing better user engagement
+- News and magazine sites
+- Educational content platforms
+- Long-form content publishers
+- Any WordPress site focused on reading experience
+
+== Installation ==
+
+1. Upload the `flowread` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Navigate to FlowRead Settings in the admin panel
+4. Configure the Reading Progress Bar and Article Read Time settings
+5. Save your preferences and enjoy enhanced reading experience
+
+== Frequently Asked Questions ==
+
+= Does FlowRead slow down my website? =
+No. FlowRead is highly optimized and uses minimal resources. The plugin loads only necessary assets on the frontend.
+
+= Can I customize the progress bar color? =
+Yes. You can customize the background color, primary color, and even use gradient colors for the progress bar.
+
+= Does it work on all post types? =
+You can choose which post types display the reading progress bar and article read time. By default, it supports all public post types.
+
+= Can I change the words per minute for reading time calculation? =
+Yes. The article read time feature allows you to set a custom words-per-minute value to match your typical reader's speed.
+
+= Is it mobile-friendly? =
+Yes. Both features are fully responsive and work perfectly on all devices including smartphones and tablets.
+
+= Can I disable these features on specific pages? =
+Yes. You can select specific post types where each feature should display through the FlowRead settings panel.
+
+= Does it affect SEO? =
+It can positively impact SEO by increasing time-on-site metrics and user engagement signals that search engines monitor.
+
+= What if I want to hide the features temporarily? =
+Simply don't select any post types in the settings, and the features won't display until you enable them again.
+
+== Screenshots ==
+
+1. Configure Reading Progress Bar 
+2. Configure Article Read Time 
+3. Configure Dynamic Word Counter 
+
+== Changelog ==
+
+= 1.0.4 =
+-  Added : Appsero SDK
+-  Update : readme.txt file
+
+= 1.0.3 =
+-  Features : Dynamic word counter Feature added
+
+= 1.0.2 =
+- fixed Use wp_enqueue commands issue
+
+= 1.0.1 =
+- fixed rightful owner issue
+- fixed text domain issue
+
+= 1.0.0 =
+- Initial release
+
+== Development ==
+
+**Requirements:**
+- PHP 7.4 or higher
+- WordPress 5.0 or later
+
+**Built with:**
+- Modern PHP Object-Oriented Programming
+- WordPress Plugin Standards
+- PSR-4 Autoloading
+- Composer Dependency Management
+
+== Support ==
+
+For support, feature requests, or bug reports, please visit:
+
+== Privacy Policy ==
+
+FlowRead - Smart Reading Experience for Websites uses [Appsero](https://appsero.com) SDK to collect some telemetry data upon user's confirmation. This helps us to troubleshoot problems faster and make product improvements.
+
+Appsero SDK **does not gather any data by default.** The SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure a great user experience for all our users.
+
+Integrating Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, **without confirmation from users in any case.**
+
+Learn more about how [Appsero collects and uses this data](https://appsero.com/privacy-policy/).
+
+== Author ==
+
+**Sydur Rahman**
+- Plugin: FlowRead – Smart Reading Experience for Websites
+
+== License ==
+
+This plugin is licensed under the GPL-2.0+ License.
+You are free to use, modify, and distribute this plugin under the terms of the GPL-2.0+ license.
+
+See the license file included with the plugin for full details.
+
+== Credits ==
+
+- Developed by Sydur Rahman
+- Built for WordPress community
+- Following WordPress coding standards and best practices
+
+== SEO Keywords ==
+
+reading progress bar, article read time, reading time estimate, user engagement, bounce rate reduction, reading experience, WordPress plugin, content metrics, reader tools, website engagement, smart reading, content depth indicator, estimated reading time
+
+== Disclaimer ==
+
+This plugin is provided "as-is" without any warranty. Use at your own risk. Always backup your website before installing new plugins.

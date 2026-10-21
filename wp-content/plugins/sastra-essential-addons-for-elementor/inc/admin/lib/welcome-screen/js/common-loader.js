@@ -1,0 +1,59 @@
+(function(window, $) {
+    'use strict';
+
+    if (!window || !$) {
+        return;
+    }
+
+    function getLoader(selector) {
+        var targetSelector = selector || '.tmpcoder-common-loader';
+        return $(targetSelector).first();
+    }
+
+    function setLoaderContent(selector, title, description) {
+        var $loader = getLoader(selector);
+        if (!$loader.length) {
+            return;
+        }
+
+        if (typeof title !== 'undefined') {
+            $loader.find('.tmpcoder-common-loader__title').text(title || '');
+        }
+
+        if (typeof description !== 'undefined') {
+            $loader.find('.tmpcoder-common-loader__desc').text(description || '');
+        }
+    }
+
+    function showLoader(selector, title, description) {
+        var $loader = getLoader(selector);
+        if (!$loader.length) {
+            return;
+        }
+
+        setLoaderContent(selector, title, description);
+        $loader.stop(true, true).css('opacity', 0);
+        $loader.removeAttr('hidden').css('display', 'flex');
+        $loader.animate({ opacity: 1 }, 200);
+    }
+
+    function hideLoader(selector) {
+        var $loader = getLoader(selector);
+        if (!$loader.length) {
+            return;
+        }
+
+        $loader.stop(true, true).animate({ opacity: 0 }, 200, function() {
+            $loader.attr('hidden', true).css({
+                opacity: '',
+                display: ''
+            });
+        });
+    }
+
+    window.tmpcoderCommonLoader = {
+        show: showLoader,
+        hide: hideLoader,
+        setContent: setLoaderContent
+    };
+})(window, window.jQuery);

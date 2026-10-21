@@ -1,0 +1,174 @@
+(function($) {
+    "use strict";
+
+    function markActionItemPending(itemId) {
+        if (!itemId || !window.tmpcoderFinishSetupData || !tmpcoderFinishSetupData.ajax_url) {
+            return;
+        }
+
+        $.post(tmpcoderFinishSetupData.ajax_url, {
+            action: "tmpcoder_finish_setup_mark_pending_item",
+            nonce: tmpcoderFinishSetupData.pending_nonce || "",
+            item_id: itemId
+        });
+    }
+
+    function updateSectionCounts() {
+        $(".tmpcoder-finish-setup-accordion").each(function() {
+            var $accordion = $(this);
+            var total = $accordion.find(".tmpcoder-finish-setup-item__checkbox").length;
+            var done = $accordion.find(".tmpcoder-finish-setup-item__checkbox:checked").length;
+            $accordion.find(".tmpcoder-finish-setup-accordion__count").text(done + "/" + total);
+        });
+    }
+
+    function updateOverallProgress() {
+        var $progress = $(".tmpcoder-finish-setup-progress");
+        if (!$progress.length) {
+            return;
+        }
+
+        var total = $(".tmpcoder-finish-setup-item__checkbox").length;
+        var done = $(".tmpcoder-finish-setup-item__checkbox:checked").length;
+        var percent = total > 0 ? Math.round((done / total) * 100) : 0;
+
+        $progress.find(".tmpcoder-finish-setup-progress__percent").text(percent + "%");
+        $progress.find(".tmpcoder-finish-setup-progress__fill").css("width", percent + "%");
+        $progress.find(".tmpcoder-finish-setup-progress__track").attr("aria-valuenow", percent);
+
+        var $meta = $progress.find(".tmpcoder-finish-setup-progress__meta");
+        if (total > 0 && done >= total) {
+            if (!$meta.find(".tmpcoder-finish-setup-progress__ready").length) {
+                $meta.append('<span class="tmpcoder-finish-setup-progress__ready">Completed Setup</span>');
+            }
+        } else {
+            $meta.find(".tmpcoder-finish-setup-progress__ready").remove();
+        }
+    }
+
+    function updateMenuBadge(remaining) {
+        var menuTitle = (window.tmpcoderFinishSetupData && tmpcoderFinishSetupData.menu_title) ? tmpcoderFinishSetupData.menu_title : "Finish Setup";
+        var $topLevelMenuName = $("#toplevel_page_tmpcoder-finish-setup > a .wp-menu-name").first();
+        var $submenuLink = $("#toplevel_page_spexo-welcome .wp-submenu a[href*='page=tmpcoder-finish-setup']").first();
+        if (!$topLevelMenuName.length && !$submenuLink.length) {
+            return;
+        }
+
+        if (remaining > 0) {
+            var pendingHtml =
+                menuTitle +
+                " <span class=\"awaiting-mod count-" + remaining + "\"><span class=\"pending-count\">" + remaining + "</span></span>"
+            ;
+            if ($topLevelMenuName.length) {
+                $topLevelMenuName.html(pendingHtml);
+            }
+            if ($submenuLink.length) {
+                $submenuLink.html(pendingHtml);
+            }
+            return;
+        }
+
+        var doneHtml = menuTitle + " <span class=\"dashicons dashicons-yes-alt\" aria-hidden=\"true\"></span>";
+        
+        if ($topLevelMenuName.length) {
+            $topLevelMenuName.html(doneHtml);
+        }
+        if ($submenuLink.length) {
+            $submenuLink.html(doneHtml);
+        }
+    }
+
+    $(document).on("change", ".tmpcoder-finish-setup-item__checkbox", function() {
+        var $checkbox = $(this);
+        var $item = $checkbox.closest(".tmpcoder-finish-setup-item");
+        var itemId = $checkbox.data("item-id") || "";
+        var previousChecked = !$checkbox.is(":checked");
+        var isChecked = $checkbox.is(":checked");
+
+        if (!itemId || !window.tmpcoderFinishSetupData || !tmpcoderFinishSetupData.ajax_url) {
+            $item.toggleClass("is-checked", isChecked);
+            updateSectionCounts();
+            updateOverallProgress();
+            return;
+        }
+
+        $item.toggleClass("is-checked", isChecked);
+        updateSectionCounts();
+        updateOverallProgress();
+
+        $.post(tmpcoderFinishSetupData.ajax_url, {
+            action: "tmpcoder_finish_setup_toggle_item",
+            nonce: tmpcoderFinishSetupData.toggle_nonce || "",
+            item_id: itemId,
+            checked: isChecked ? "1" : "0"
+        }).done(function(response) {
+            if (!response || response.success !== true) {
+                $checkbox.prop("checked", previousChecked);
+                $item.toggleClass("is-checked", previousChecked);
+                updateSectionCounts();
+                updateOverallProgress();
+                return;
+            }
+
+            var checkedState = !!(response.data && Number(response.data.is_checked) === 1);
+            if (checkedState !== isChecked) {
+                $checkbox.prop("checked", checkedState);
+                $item.toggleClass("is-checked", checkedState);
+                updateSectionCounts();
+                updateOverallProgress();
+            }
+
+            if (response.data && typeof response.data.remaining !== "undefined") {
+                updateMenuBadge(parseInt(response.data.remaining, 10) || 0);
+            }
+        }).fail(function() {
+            $checkbox.prop("checked", previousChecked);
+            $item.toggleClass("is-checked", previousChecked);
+            updateSectionCounts();
+            updateOverallProgress();
+        });
+    });
+
+    $(document).on("click", ".tmpcoder-finish-setup-item__action", function() {
+        var $item = $(this).closest(".tmpcoder-finish-setup-item");
+        var itemId = $item.data("item-id") || "";
+        markActionItemPending(itemId);
+    });
+
+    $(document).on("click", ".tmpcoder-finish-setup-header__dismiss", function(event) {
+        event.preventDefault();
+
+        var $link = $(this);
+        if (!window.tmpcoderFinishSetupData || !tmpcoderFinishSetupData.ajax_url) {
+            window.location.href = $link.attr("href");
+            return;
+        }
+
+        $link.addClass("is-loading");
+
+        $.post(tmpcoderFinishSetupData.ajax_url, {
+            action: "tmpcoder_finish_setup_dismiss",
+            nonce: tmpcoderFinishSetupData.dismiss_nonce || ""
+        }).always(function() {
+            window.location.href = tmpcoderFinishSetupData.dashboard_url || $link.attr("href");
+        });
+    });
+
+    $(document).on("click", ".tmpcoder-finish-setup-accordion__head", function() {
+        var $accordion = $(this).closest(".tmpcoder-finish-setup-accordion");
+        var isOpen = $accordion.hasClass("is-open");
+
+        $(".tmpcoder-finish-setup-accordion")
+            .removeClass("is-open")
+            .find(".tmpcoder-finish-setup-accordion__head")
+            .attr("aria-expanded", "false");
+
+        if (!isOpen) {
+            $accordion.addClass("is-open");
+            $(this).attr("aria-expanded", "true");
+        }
+    });
+
+    updateSectionCounts();
+    updateOverallProgress();
+})(jQuery);
