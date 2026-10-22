@@ -119,8 +119,10 @@ jobs:
       - name: Upload stack configuration
         run: |
           ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ env.APP_DIR }}"
-          rsync -az -e "ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519" --delete --exclude 'backups' --exclude '.env' \
-            docker-compose.yml docker/ scripts/ deploy/ \
+          # No trailing slashes: each directory lands as APP_DIR/<dir>, and --delete
+          # only prunes inside those directories (never .env, backups or uploads).
+          rsync -az --chown=root:root -e "ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519" --delete \
+            docker-compose.yml docker scripts deploy \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.APP_DIR }}/
 
       - name: Sync media (wp-content/uploads)
