@@ -20,8 +20,13 @@ cd "$APP_DIR"
 # shellcheck disable=SC1091
 set -a; . "$APP_DIR/.env"; set +a
 
-install -m 644 "$NGINX_SRC" "$NGINX_AVAIL"
+sed "s/__APP_PORT__/${APP_PORT:-8095}/g" "$NGINX_SRC" > "$NGINX_AVAIL"
+chmod 644 "$NGINX_AVAIL"
 ln -sfn "$NGINX_AVAIL" "$NGINX_ENABLED"
+mkdir -p /var/www/certbot
+
+# drop an older hand-installed copy (no .conf suffix) that would duplicate server_name
+rm -f "/etc/nginx/sites-enabled/$DOMAIN" "/etc/nginx/sites-available/$DOMAIN"
 
 # make sure the default site does not hijack the domain
 if [ -L /etc/nginx/sites-enabled/default ] || [ -f /etc/nginx/sites-enabled/default ]; then

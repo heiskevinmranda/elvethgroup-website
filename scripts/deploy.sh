@@ -22,14 +22,18 @@ docker compose version >/dev/null 2>&1 || die "docker compose v2 is not availabl
 # shellcheck disable=SC1091
 set -a; . "$APP_DIR/.env"; set +a
 
+# Ignore any hand-written docker-compose.override.yml on the host: it would
+# switch the stack to a local build instead of the GHCR image.
+compose() { docker compose -f "$APP_DIR/docker-compose.yml" "$@"; }
+
 mkdir -p "$UPLOADS_DIR" "$APP_DIR/backups"
 chmod 755 "$UPLOADS_DIR"
 
 log "Pulling image ${IMAGE_NAME}:${IMAGE_TAG}"
-docker compose pull wordpress
+compose pull wordpress
 
 log "Starting / updating containers"
-docker compose up -d --remove-orphans
+compose up -d --remove-orphans
 
 log "Waiting for the application to answer on http://127.0.0.1:${APP_PORT}"
 for i in $(seq 1 60); do
@@ -38,7 +42,7 @@ for i in $(seq 1 60); do
         break
     fi
     if [ "$i" -eq 60 ]; then
-        docker compose logs --tail 50 wordpress || true
+        compose logs --tail 50 wordpress || true
         die "application did not become healthy in time"
     fi
     sleep 2
@@ -52,14 +56,14 @@ if [ -f "$APP_DIR/backups/seed.sql" ]; then
 fi
 
 log "Syncing site URL options"
-docker compose exec -T wordpress wp option update home "$SITE_URL" --allow-root >/dev/null 2>&1 || true
-docker compose exec -T wordpress wp option update siteurl "$SITE_URL" --allow-root >/dev/null 2>&1 || true
+compose exec -T wordpress wp option update home "$SITE_URL" --allow-root >/dev/null 2>&1 || true
+compose exec -T wordpress wp option update siteurl "$SITE_URL" --allow-root >/dev/null 2>&1 || true
 
 log "Flushing caches"
-docker compose exec -T wordpress wp cache flush --allow-root >/dev/null 2>&1 || true
-docker compose exec -T wordpress wp rewrite flush --allow-root >/dev/null 2>&1 || true
+compose exec -T wordpress wp cache flush --allow-root >/dev/null 2>&1 || true
+compose exec -T wordpress wp rewrite flush --allow-root >/dev/null 2>&1 || true
 
 log "Current status"
-docker compose ps
+compose ps
 
 log "Deploy finished"
