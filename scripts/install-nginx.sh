@@ -20,9 +20,17 @@ cd "$APP_DIR"
 # shellcheck disable=SC1091
 set -a; . "$APP_DIR/.env"; set +a
 
-sed "s/__APP_PORT__/${APP_PORT:-8095}/g" "$NGINX_SRC" > "$NGINX_AVAIL"
-chmod 644 "$NGINX_AVAIL"
-ln -sfn "$NGINX_AVAIL" "$NGINX_ENABLED"
+NGINX_SSL_SRC="$APP_DIR/deploy/nginx/$DOMAIN.ssl.conf"
+CERT_DIR="/etc/letsencrypt/live/$DOMAIN"
+
+install_vhost() {
+    sed "s/__APP_PORT__/${APP_PORT:-8095}/g" "$1" > "$NGINX_AVAIL"
+    chmod 644 "$NGINX_AVAIL"
+    ln -sfn "$NGINX_AVAIL" "$NGINX_ENABLED"
+    nginx -t
+    systemctl reload nginx || systemctl restart nginx
+}
+
 mkdir -p /var/www/certbot
 
 # drop an older hand-installed copy (no .conf suffix) that would duplicate server_name
@@ -33,7 +41,25 @@ if [ -L /etc/nginx/sites-enabled/default ] || [ -f /etc/nginx/sites-enabled/defa
     rm -f /etc/nginx/sites-enabled/default
 fi
 
-nginx -t
-systemctl reload nginx || systemctl restart nginx
+# Obtain the certificate over HTTP-01 (webroot) the first time. The vhost is
+# managed from git, so certbot must not edit it (no --nginx installer).
+if [ ! -f "$CERT_DIR/fullchain.pem" ]; then
+    install_vhost "$NGINX_SRC"
+    certbot certonly --webroot -w /var/www/certbot --non-interactive --agree-tos \
+        --cert-name "$DOMAIN" -d "$DOMAIN" -d "www.$DOMAIN" \
+    || certbot certonly --webroot -w /var/www/certbot --non-interactive --agree-tos \
+        --cert-name "$DOMAIN" -d "$DOMAIN" \
+    || echo "[nginx] certificate request failed - staying on HTTP" >&2
+fi
 
-echo "[nginx] virtual host installed for $DOMAIN -> 127.0.0.1:${APP_PORT}"
+if [ -f "$CERT_DIR/fullchain.pem" ] && [ -f "$NGINX_SSL_SRC" ]; then
+    install_vhost "$NGINX_SSL_SRC"
+    # renewals reuse the webroot; reload nginx so it picks up renewed certs
+    mkdir -p /etc/letsencrypt/renewal-hooks/deploy
+    printf '#!/bin/sh\nsystemctl reload nginx\n' > /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
+    chmod +x /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
+    echo "[nginx] HTTPS virtual host installed for $DOMAIN -> 127.0.0.1:${APP_PORT}"
+else
+    install_vhost "$NGINX_SRC"
+    echo "[nginx] HTTP virtual host installed for $DOMAIN -> 127.0.0.1:${APP_PORT}"
+fi

@@ -38,6 +38,11 @@ define( 'WP_DEBUG', ${WORDPRESS_DEBUG:-false} );
 define( 'WP_DEBUG_LOG', ${WORDPRESS_DEBUG_LOG:-false} );
 define( 'WP_DEBUG_DISPLAY', ${WORDPRESS_DEBUG_DISPLAY:-false} );
 
+// TLS terminates at the host nginx; trust its forwarded scheme.
+if ( isset( \$_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === \$_SERVER['HTTP_X_FORWARDED_PROTO'] ) {
+	\$_SERVER['HTTPS'] = 'on';
+}
+
 define( 'FS_METHOD', 'direct' );
 define( 'DISALLOW_FILE_EDIT', true );
 define( 'AUTOMATIC_UPDATER_DISABLED', true );
