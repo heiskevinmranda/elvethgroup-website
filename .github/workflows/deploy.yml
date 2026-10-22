@@ -36,14 +36,13 @@ jobs:
           echo "$files" | xargs -n1 -I{} php -l {} | grep -v "No syntax errors" || true
           echo "$files" | xargs -n1 -I{} php -l {} >/dev/null
 
-  deploy:
-    name: Build, push and deploy
+  build:
+    name: Build and push image
     needs: lint
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-
     steps:
       - uses: actions/checkout@v4
 
@@ -51,7 +50,6 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to GitHub Container Registry
-        if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -69,6 +67,32 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  gate:
+    name: Check deploy credentials
+    runs-on: ubuntu-latest
+    outputs:
+      can_deploy: ${{ steps.check.outputs.can_deploy }}
+    steps:
+      - id: check
+        env:
+          HAS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          HAS_SERVER_ENV: ${{ secrets.SERVER_ENV }}
+        run: |
+          if [ -n "$HAS_SSH_KEY" ] && [ -n "$HAS_SERVER_ENV" ]; then
+            echo "can_deploy=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "can_deploy=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::VPS_SSH_KEY and/or SERVER_ENV secret is missing - the deploy job will be skipped."
+          fi
+
+  deploy:
+    name: Deploy to VPS
+    needs: [build, gate]
+    if: needs.gate.outputs.can_deploy == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Configure SSH
         uses: webfactory/ssh-agent@v0.9.0

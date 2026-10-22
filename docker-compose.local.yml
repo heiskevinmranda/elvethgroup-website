@@ -1,0 +1,21 @@
+# ---------------------------------------------------------------------------
+# Local development override.
+#
+#   cp .env.example .env
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
+#
+# In the local .env set APP_PORT=8081 and UPLOADS_DIR to a local path.
+# ---------------------------------------------------------------------------
+services:
+  db:
+    ports:
+      - "127.0.0.1:3307:3306"
+
+  wordpress:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: elvethgroup-website:local
+    pull_policy: never
+    volumes:
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
