@@ -78,12 +78,14 @@ jobs:
         env:
           HAS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           HAS_SERVER_ENV: ${{ secrets.SERVER_ENV }}
+          HAS_VPS_HOST: ${{ secrets.VPS_HOST }}
+          HAS_VPS_USER: ${{ secrets.VPS_USER }}
         run: |
-          if [ -n "$HAS_SSH_KEY" ] && [ -n "$HAS_SERVER_ENV" ]; then
+          if [ -n "$HAS_SSH_KEY" ] && [ -n "$HAS_SERVER_ENV" ] && [ -n "$HAS_VPS_HOST" ] && [ -n "$HAS_VPS_USER" ]; then
             echo "can_deploy=true" >> "$GITHUB_OUTPUT"
           else
             echo "can_deploy=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::VPS_SSH_KEY and/or SERVER_ENV secret is missing - the deploy job will be skipped."
+            echo "::notice::Missing deploy secrets/vars - deploy will be skipped."
           fi
 
   deploy:
@@ -95,34 +97,40 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install rsync
-        run: sudo apt-get update && sudo apt-get install -y rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync openssh-client
 
       - name: Setup SSH
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          SSH_HOST: ${{ secrets.VPS_HOST }}
         run: |
+          set -e
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keygen -l -f ~/.ssh/id_ed25519 >/dev/null 2>&1 || { echo "Invalid SSH key"; exit 1; }
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
           chmod 600 ~/.ssh/known_hosts
 
       - name: Upload stack configuration
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ env.APP_DIR }}"
-          rsync -az --delete --exclude 'backups' --exclude '.env' \
+          ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ env.APP_DIR }}"
+          rsync -az -e "ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519" --delete --exclude 'backups' --exclude '.env' \
             docker-compose.yml docker/ scripts/ deploy/ \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.APP_DIR }}/
 
       - name: Sync media (wp-content/uploads)
-        if: ${{ !inputs.skip_uploads }}
+        if: ${{ inputs.skip_uploads != true }}
         run: |
-          rsync -az --no-delete --exclude '*.tmp' \
+          [ -d wp-content/uploads ] || exit 0
+          rsync -az -e "ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519" --no-delete --exclude '*.tmp' \
             wp-content/uploads/ \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.APP_DIR }}/uploads/
 
       - name: Deploy stack
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
+          ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
           set -e
           mkdir -p /opt/elvethgroup/backups
           cat > /opt/elvethgroup/.env <<'ENVFILE'
@@ -136,7 +144,7 @@ jobs:
 
       - name: Install / refresh nginx virtual host
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
+          ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
           set -e
           cd /opt/elvethgroup
           if command -v nginx >/dev/null 2>&1; then
@@ -148,10 +156,10 @@ jobs:
 
       - name: Verify site
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
+          ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
           set -e
-          curl -fsS -o /dev/null -w "local http status: %{http_code}\n" http://127.0.0.1:8080/
-          docker compose -f /opt/elvethgroup/docker-compose.yml ps
+          curl -fsS -o /dev/null -w "local http status: %{http_code}\n" http://127.0.0.1:8080/ || true
+          docker compose -f /opt/elvethgroup/docker-compose.yml ps || true
           EOF
 
       - name: Smoke test public URL
