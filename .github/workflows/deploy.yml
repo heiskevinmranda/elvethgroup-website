@@ -94,83 +94,65 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Configure SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
-          ssh-host: ${{ secrets.VPS_HOST }}
+      - name: Install rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          chmod 600 ~/.ssh/known_hosts
 
       - name: Upload stack configuration
-        uses: appleboy/rsync-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          source: |
-            docker-compose.yml
-            docker/
-            scripts/
-            deploy/
-          target: ${{ env.APP_DIR }}
-          strip_components: 0
-          rsync_args: "-avz --delete --exclude 'backups' --exclude '.env'"
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ env.APP_DIR }}"
+          rsync -az --delete --exclude 'backups' --exclude '.env' \
+            docker-compose.yml docker/ scripts/ deploy/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.APP_DIR }}/
 
       - name: Sync media (wp-content/uploads)
         if: ${{ !inputs.skip_uploads }}
-        uses: appleboy/rsync-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          source: wp-content/uploads/
-          target: ${{ env.APP_DIR }}/uploads/
-          rsync_args: "-az --no-delete --exclude '*.tmp'"
+        run: |
+          rsync -az --no-delete --exclude '*.tmp' \
+            wp-content/uploads/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.APP_DIR }}/uploads/
 
       - name: Deploy stack
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          envs: APP_DIR
-          script: |
-            set -e
-            mkdir -p ${{ env.APP_DIR }}/backups
-            cat > ${{ env.APP_DIR }}/.env <<'ENVFILE'
-            ${{ secrets.SERVER_ENV }}
-            ENVFILE
-            chmod 600 ${{ env.APP_DIR }}/.env
-            cd ${{ env.APP_DIR }}
-            chmod +x scripts/*.sh
-            bash scripts/deploy.sh
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
+          set -e
+          mkdir -p /opt/elvethgroup/backups
+          cat > /opt/elvethgroup/.env <<'ENVFILE'
+          ${{ secrets.SERVER_ENV }}
+          ENVFILE
+          chmod 600 /opt/elvethgroup/.env
+          cd /opt/elvethgroup
+          chmod +x scripts/*.sh
+          bash scripts/deploy.sh
+          EOF
 
       - name: Install / refresh nginx virtual host
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          envs: APP_DIR
-          script: |
-            set -e
-            cd ${{ env.APP_DIR }}
-            if command -v nginx >/dev/null 2>&1; then
-              bash scripts/install-nginx.sh
-            else
-              echo "nginx not installed - skipping virtual host setup"
-            fi
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
+          set -e
+          cd /opt/elvethgroup
+          if command -v nginx >/dev/null 2>&1; then
+            bash scripts/install-nginx.sh
+          else
+            echo "nginx not installed - skipping virtual host setup"
+          fi
+          EOF
 
       - name: Verify site
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          envs: APP_DIR
-          script: |
-            set -e
-            curl -fsS -o /dev/null -w "local http status: %{http_code}\n" http://127.0.0.1:8080/
-            docker compose -f ${{ env.APP_DIR }}/docker-compose.yml ps
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -s" <<'EOF'
+          set -e
+          curl -fsS -o /dev/null -w "local http status: %{http_code}\n" http://127.0.0.1:8080/
+          docker compose -f /opt/elvethgroup/docker-compose.yml ps
+          EOF
 
       - name: Smoke test public URL
         run: |
